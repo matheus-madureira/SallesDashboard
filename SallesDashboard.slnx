@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/WebApi/WebApi.csproj" />
+    <Project Path="src/WebClient/WebClient.Client/WebClient.Client.csproj" />
+    <Project Path="src/WebClient/WebClient/WebClient.csproj" />
+  </Folder>
+</Solution>
