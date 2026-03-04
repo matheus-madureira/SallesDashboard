@@ -4,21 +4,35 @@
 
 <PageTitle>Dashboard</PageTitle>
 
-<h1>Olá, seja bem vindo</h1>
+<h1 class="text-4xl font-bold">Olá, seja bem vindo</h1>
 
-<p> Suas vendas em tempo real</p>
+<p class="text-lg text-zinc-700">Acompanhe todas as suas vendas em tempo real.</p>
 
 @if (_products.Count == 0)
 {
-    <p>Nenhuma venda recebida ainda...</p>
+    <p class="pt-10 text-zinc-600">Nenhuma venda recebida ainda...</p>
 }
 else
 {
-    <ul>
+    <ul class="grid grid-cols-3 gap-4 py-4">
         @foreach (var product in _products)
         {
-            <li>
-                <strong>@product.Name</strong> - R$ @product.Price - @product.CreatedAt
+            var collaborator = product.Collaborator;
+
+            <li class="flex flex-col space-y-4 p-4 border-2 border-zinc-300 rounded-md">
+                <div class="flex justify-between align-center">
+                    <strong>Vendedor:</strong> @collaborator.Name 
+                    <strong>Email:</strong> @collaborator.Email
+                </div>
+                <div>
+                    <strong>Produto:</strong> @product.Name
+                </div>
+                <div>
+                    <strong>Valor:</strong> R$ @product.Price
+                </div>
+                <div>
+                    <strong>Realizada em:</strong> @product.CreatedAt
+                </div>
             </li>
         }
     </ul>
@@ -36,7 +50,8 @@ else
             .WithAutomaticReconnect()
             .Build();
 
-        _connection.On<ProductViewModel>("ReceiveProduct",
+        _connection.On<ProductViewModel>(
+            "ReceiveProduct",
             product =>
             {
                 _products.Add(product);

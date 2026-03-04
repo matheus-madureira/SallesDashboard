@@ -1,29 +1,29 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">WebClient</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
+﻿<div class="flex h-screen flex-col justify-between bg-blue-600">
+  <div class="px-4 py-6">
+    <span class="w-full text-white text-xl">
+      Minhas Vendas
+    </span>
+
+    <ul class="mt-6 space-y-1">
+      <li>
+        <NavLink href="#" class="block rounded-lg bg-blue-100 px-4 py-2 text-sm font-medium">
+          Dashboard
+        </NavLink>
+      </li>
+    </ul>
+  </div>
+
+  <div class="sticky inset-x-0 bottom-0 p-2.5">
+    <a href="#" class="flex items-center gap-2 p-4 bg-blue-100 rounded-lg">
+      <img alt="Perfil" src="https://avatars.githubusercontent.com/u/68331373?v=4"
+           class="size-10 rounded-full object-cover">
+
+      <div>
+        <p class="text-xs text-[#0071c1]">
+          <strong class="block font-medium">Matheus Madureira</strong>
+          <span>matheus@example.com </span>
+        </p>
+      </div>
+    </a>
+  </div>
 </div>
-
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="nav flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-    </nav>
-</div>
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
