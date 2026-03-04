@@ -22,7 +22,7 @@ public sealed class ServerProductNotifier(
             var productData = GenerateProductData();
             
             await _context.Clients.All.SendAsync(
-                    $"Server time: {DateTime.Now:HH:mm:ss}",
+                    "ReceiveProduct",
                     productData,
                     cancellationToken: stoppingToken);
         }
