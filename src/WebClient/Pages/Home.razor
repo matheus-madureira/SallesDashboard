@@ -1,0 +1,56 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.SignalR.Client;
+@using WebClient.ViewModel
+
+<PageTitle>Dashboard</PageTitle>
+
+<h1>Olá, seja bem vindo</h1>
+
+<p> Suas vendas em tempo real</p>
+
+@if (_products.Count == 0)
+{
+    <p>Nenhuma venda recebida ainda...</p>
+}
+else
+{
+    <ul>
+        @foreach (var product in _products)
+        {
+            <li>
+                <strong>@product.Name</strong> - R$ @product.Price - @product.CreatedAt
+            </li>
+        }
+    </ul>
+}
+
+@code
+{
+    private HubConnection? _connection;
+    private readonly List<ProductViewModel> _products = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        _connection = new HubConnectionBuilder()
+            .WithUrl("https://localhost:7164/products")
+            .WithAutomaticReconnect()
+            .Build();
+
+        _connection.On<ProductViewModel>("ReceiveProduct",
+            product =>
+            {
+                _products.Add(product);
+                InvokeAsync(StateHasChanged);
+            });
+
+        await _connection.StartAsync();
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_connection is not null)
+        {
+            await _connection.DisposeAsync();
+        }
+    }
+}

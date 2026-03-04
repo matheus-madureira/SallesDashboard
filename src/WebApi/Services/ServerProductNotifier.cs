@@ -19,24 +19,30 @@ public sealed class ServerProductNotifier(
 
         while (!stoppingToken.IsCancellationRequested)
         {
-            var productData = GenerateProductData();
-            
-            await _context.Clients.All.SendAsync(
+            _logger.LogInformation("Generating 3 new sales...");
+
+            for (int i = 0; i < 3; i++)
+            {
+                var productData = GenerateProductData();
+
+                await _context.Clients.All.SendAsync(
                     "ReceiveProduct",
                     productData,
                     cancellationToken: stoppingToken);
+            }
+
+            await Task.Delay(TimeSpan.FromSeconds(30), stoppingToken);
         }
     }
 
     private Product GenerateProductData()
     {
         var faker = new Faker();
-        
+
         return Product.Create(
             faker.Commerce.ProductName(),
             faker.Commerce.Price(100),
-            faker.Date.RecentDateOnly().ToString(),
+            faker.Date.RecentDateOnly().ToString("MM/dd/yyyy"),
             Collaborator.Create(faker.Person.FullName, faker.Person.Email));
     }
 }
-

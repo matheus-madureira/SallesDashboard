@@ -1,6 +1,6 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/WebApi/WebApi.csproj" />
-    <Project Path="src/WebUI/WebUI.csproj" Id="7c218922-24e3-4440-98bd-10cbdbbb571e" />
+    <Project Path="src/WebClient/WebClient.csproj" Id="5d5c5679-269f-492c-89ba-ce3b0a10273b" />
   </Folder>
 </Solution>
