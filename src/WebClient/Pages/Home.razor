@@ -15,12 +15,12 @@
 else
 {
     <div class="min-w-full py-6">
-        <div class="py-3 px-4 border-t border-x border-zinc-300 rounded-t-lg rounded-x-lg">
+        <div class="bg-gray-50 py-3 px-4 border-t border-x border-zinc-300 rounded-t-lg rounded-x-lg">
             <div class="relative max-w-xs">
                 <label for="hs-table-search" class="sr-only">Pesquisar</label>
 
                 <input type="text" name="hs-table-search" id="hs-table-search"
-                       class="py-1.5 sm:py-2 px-3 ps-9 block w-full border border-zinc-300 shadow-2xs rounded-lg sm:text-sm text-black placeholder:text-zinc-600 focus:z-10 focus:border-zinc-400 focus:ring-zinc-400 disabled:opacity-50 disabled:pointer-events-none"
+                       class="bg-white py-1.5 sm:py-2 px-3 ps-9 block w-full border border-zinc-300 shadow-2xs rounded-lg sm:text-sm text-black placeholder:text-zinc-600 focus:z-10 focus:border-zinc-400 focus:ring-zinc-400 disabled:opacity-50 disabled:pointer-events-none"
                        placeholder="Pesquisar...">
 
                 <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-3">
@@ -33,59 +33,47 @@ else
                 </div>
             </div>
         </div>
-        
-        <div
-            class="border border-zinc-300 rounded-x-lg rounded-b-lg max-h-[470px] divide-y divide-zinc-300 overflow-y-auto [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-md [&::-webkit-scrollbar-track]:bg-zinc-200 [&::-webkit-scrollbar-thumb]:bg-zinc-400">
-            <table class="min-w-full">
-                <thead class="border-b border-zinc-300">
-                <tr>
-                    <th scope="col" class="py-3 px-4 pe-0">
-                        <div class="flex items-center h-5">
-                            <input id="hs-table-search-checkbox-all" type="checkbox"
-                                   class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none">
-                            <label for="hs-table-search-checkbox-all" class="sr-only">Checkbox</label>
-                        </div>
-                    </th>
 
-                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">
+        <div
+            class="border border-zinc-300 rounded-x-lg rounded-b-lg max-h-[340px] divide-y divide-zinc-300 overflow-y-auto [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-md [&::-webkit-scrollbar-track]:bg-zinc-200 [&::-webkit-scrollbar-thumb]:bg-zinc-400">
+            <table class="min-w-full">
+                <thead class="bg-gray-50 border-b border-zinc-300 sticky top-0 shrink-0 z-10">
+                <tr>
+                    <th scope="col"
+                        class="px-6 py-3 text-start text-xs font-semibold text-muted-foreground-1 uppercase">
                         Vendedor
                     </th>
 
-                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">
+                    <th scope="col"
+                        class="px-6 py-3 text-start text-xs font-semibold text-muted-foreground-1 uppercase">
                         E-mail
                     </th>
 
-                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">
+                    <th scope="col"
+                        class="px-6 py-3 text-start text-xs font-semibold text-muted-foreground-1 uppercase">
                         Produto
                     </th>
 
-
-                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">
-                        Preço
-                    </th>
-                    
-                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">
+                    <th scope="col"
+                        class="px-6 py-3 text-center text-xs font-semibold text-muted-foreground-1 uppercase">
                         Quantidade
                     </th>
+                    
+                    <th scope="col"
+                        class="px-6 py-3 text-start text-xs font-semibold text-muted-foreground-1 uppercase">
+                        Preço
+                    </th>
 
-                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">
+                    <th scope="col"
+                        class="px-6 py-3 text-start text-xs font-semibold text-muted-foreground-1 uppercase">
                         Realizada em
                     </th>
                 </tr>
                 </thead>
-
                 <tbody>
                 @foreach (var product in _products)
                 {
                     <tr>
-                        <td class="py-3 ps-4">
-                            <div class="flex items-center h-5">
-                                <input id="hs-table-search-checkbox-1" type="checkbox"
-                                       class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none">
-                                <label for="hs-table-search-checkbox-1" class="sr-only">Checkbox</label>
-                            </div>
-                        </td>
-
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-foreground">
                             @product.Collaborator.Name
                         </td>
@@ -97,17 +85,22 @@ else
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">
                             @product.Name
                         </td>
-
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">
-                            @product.Price
-                        </td>
-
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">
+                        
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-center text-foreground">
                             @product.Quantity
                         </td>
-                        
+
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">
+                            <span
+                                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-semibold tracking-wide bg-teal-100 text-teal-800">
+                            @product.Price
+                            </span>
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">
+                            <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-800">
                             @product.CreatedAt
+                            </span>
                         </td>
                     </tr>
                 }
