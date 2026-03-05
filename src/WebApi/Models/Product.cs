@@ -8,6 +8,8 @@ public sealed class Product
 
     public string Price { get; private set; }
 
+    public int Quantity { get; private set; }
+    
     public string CreatedAt { get; private set; }
 
     public Collaborator Collaborator { get; private set; }
@@ -15,11 +17,13 @@ public sealed class Product
     private Product(
         string name,
         string price,
+        int quantity,
         string createdAt,
         Collaborator collaborator)
     {
         Name = name;
         Price = price;
+        Quantity = quantity;
         CreatedAt = createdAt;
         Collaborator = collaborator;
     }
@@ -27,9 +31,10 @@ public sealed class Product
     public static Product Create(
         string name, 
         string price, 
+        int quantity,
         string createdAt,
         Collaborator collaborator)
     {
-        return new Product(name, price, createdAt, collaborator);
+        return new Product(name, price, quantity, createdAt, collaborator);
     }
 }

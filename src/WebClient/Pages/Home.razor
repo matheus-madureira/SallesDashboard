@@ -10,41 +10,111 @@
 
 @if (_products.Count == 0)
 {
-    <div class="grid grid-cols-3 gap-4 py-4">
-        @for (var i = 1; i <= 3; i++)
-        {
-            <Skeleton/>
-        }
-    </div>
+    <Skeleton/>
 }
 else
 {
-    <ul class="grid grid-cols-3 gap-4 py-4">
-        @foreach (var product in _products)
-        {
-            var collaborator = product.Collaborator;
+    <div class="min-w-full py-6">
+        <div class="py-3 px-4 border-t border-x border-zinc-300 rounded-t-lg rounded-x-lg">
+            <div class="relative max-w-xs">
+                <label for="hs-table-search" class="sr-only">Pesquisar</label>
 
-            <li class="flex flex-col space-y-4 p-4 border-2 border-zinc-300 rounded-md">
-                <div class="flex justify-between align-center">
-                    <p>
-                        <strong>Vendedor:</strong> @collaborator.Name
-                    </p>
-                    <p>
-                        <strong>Email:</strong> @collaborator.Email
-                    </p>
+                <input type="text" name="hs-table-search" id="hs-table-search"
+                       class="py-1.5 sm:py-2 px-3 ps-9 block w-full border border-zinc-300 shadow-2xs rounded-lg sm:text-sm text-black placeholder:text-zinc-600 focus:z-10 focus:border-zinc-400 focus:ring-zinc-400 disabled:opacity-50 disabled:pointer-events-none"
+                       placeholder="Pesquisar...">
+
+                <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-3">
+                    <svg class="size-4 text-zinc-600" xmlns="http://www.w3.org/2000/svg" width="24"
+                         height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.3-4.3"/>
+                    </svg>
                 </div>
-                <div>
-                    <strong>Produto:</strong> @product.Name
-                </div>
-                <div>
-                    <strong>Valor:</strong> R$ @product.Price
-                </div>
-                <div>
-                    <strong>Realizada em:</strong> @product.CreatedAt
-                </div>
-            </li>
-        }
-    </ul>
+            </div>
+        </div>
+        
+        <div
+            class="border border-zinc-300 rounded-x-lg rounded-b-lg max-h-[470px] divide-y divide-zinc-300 overflow-y-auto [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-md [&::-webkit-scrollbar-track]:bg-zinc-200 [&::-webkit-scrollbar-thumb]:bg-zinc-400">
+            <table class="min-w-full">
+                <thead class="border-b border-zinc-300">
+                <tr>
+                    <th scope="col" class="py-3 px-4 pe-0">
+                        <div class="flex items-center h-5">
+                            <input id="hs-table-search-checkbox-all" type="checkbox"
+                                   class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none">
+                            <label for="hs-table-search-checkbox-all" class="sr-only">Checkbox</label>
+                        </div>
+                    </th>
+
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">
+                        Vendedor
+                    </th>
+
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">
+                        E-mail
+                    </th>
+
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">
+                        Produto
+                    </th>
+
+
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">
+                        Preço
+                    </th>
+                    
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">
+                        Quantidade
+                    </th>
+
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">
+                        Realizada em
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody>
+                @foreach (var product in _products)
+                {
+                    <tr>
+                        <td class="py-3 ps-4">
+                            <div class="flex items-center h-5">
+                                <input id="hs-table-search-checkbox-1" type="checkbox"
+                                       class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none">
+                                <label for="hs-table-search-checkbox-1" class="sr-only">Checkbox</label>
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-foreground">
+                            @product.Collaborator.Name
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">
+                            @product.Collaborator.Email
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">
+                            @product.Name
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">
+                            @product.Price
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">
+                            @product.Quantity
+                        </td>
+                        
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">
+                            @product.CreatedAt
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
 }
 
 @code

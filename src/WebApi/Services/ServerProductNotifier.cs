@@ -31,7 +31,7 @@ public sealed class ServerProductNotifier(
                     cancellationToken: stoppingToken);
             }
 
-            await Task.Delay(TimeSpan.FromSeconds(30), stoppingToken);
+            await Task.Delay(TimeSpan.FromSeconds(15), stoppingToken);
         }
     }
 
@@ -42,6 +42,7 @@ public sealed class ServerProductNotifier(
         return Product.Create(
             faker.Commerce.ProductName(),
             faker.Commerce.Price(100),
+            faker.Commerce.Random.Int(1, 100),
             faker.Date.RecentDateOnly().ToString("MM/dd/yyyy"),
             Collaborator.Create(faker.Person.FullName, faker.Person.Email));
     }
